@@ -4,7 +4,7 @@ import { svgStringToBase64 } from './svg';
 
 export function renderMermaidInNode(node: HTMLElement, id: string, value: string, chart: HTMLElement, options?: Parameters<typeof renderMermaidChart>['3']) {
   const { close } = createLoading(node);
-  new Promise<void>(async (resolve) => {
+  return new Promise<void>(async (resolve) => {
     await renderMermaidChart(id, value, chart, options);
     close();
     resolve();
