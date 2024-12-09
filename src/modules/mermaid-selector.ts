@@ -1,11 +1,10 @@
 import type { MermaidChartFormat } from '@/formats';
 import type Quill from 'quill';
 import type { HistroyInputOptions } from './history-input';
-import type { MerMaidEditorOptions } from './mermaid-editor';
+import type { MermaidEditor, MerMaidEditorOptions } from './mermaid-editor';
 import { addScrollEvent, clearScrollEvent, events } from '@/utils';
 import closeSvg from '../svg/close.svg';
 import editSvg from '../svg/edit.svg';
-import { MermaidEditor } from './mermaid-editor';
 
 export interface MermaidSelectorOptions {
   onDestroy: () => void;
@@ -79,15 +78,16 @@ export class MermaidSelector {
       iconStr: editSvg,
       classList: ['ql-mermaid-select-edit'],
       click: () => {
-        this.editor = new MermaidEditor(this.quill, this.mermaidBlot, {
-          ...this.options.editorOptions,
-          onClose: () => {
-            this.editor = undefined;
-            if (this.options.editorOptions.onClose) {
-              this.options.editorOptions.onClose();
-            }
-          },
-        }, this.histroyStackOptions);
+        // this.editor = new MermaidEditor(this.quill, this.mermaidBlot, {
+        //   ...this.options.editorOptions,
+        //   onClose: () => {
+        //     this.editor = undefined;
+        //     if (this.options.editorOptions.onClose) {
+        //       this.options.editorOptions.onClose();
+        //     }
+        //   },
+        // }, this.histroyStackOptions);
+        this.mermaidBlot.changeMode('edit');
       },
     });
     const removeBtn = createBtnIcon({
